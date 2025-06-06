@@ -1,0 +1,106 @@
+
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{cancel}
+\usepackage{array}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+
+% Imposta i margini della pagina
+\geometry{
+    top=2cm,
+    bottom=2.5cm,
+    left=2.5cm,
+    right=2.5cm,
+    includehead,
+    includefoot
+}
+
+% Configura l'header e il footer
+\pagestyle{fancy}
+\fancyhf{}  % Pulisce header e footer
+\renewcommand{\headrulewidth}{0pt}  % Rimuove la linea dell'header
+\fancyfoot[C]{-\thepage-}  % Numero di pagina centrato nel footer
+
+% Rimuove lo spazio extra dopo il titolo
+\makeatletter
+\def\@maketitle{
+  \newpage
+  \null
+  \vskip -2em
+  \begin{center}%
+  \let \footnote \thanks
+    {\LARGE \@title \par}%
+    \vskip 1.5em%
+    {\large \@date \par}%
+  \end{center}%
+  \par
+  \vskip 1.5em
+}
+\makeatother
+
+\begin{document}
+\title{Soluzione sistema di congruenze}
+\date{06/06/2025}
+\maketitle
+\section*{Esercizio}
+Si determinino tutte le soluzioni del seguente sistema di congruenze:
+\[
+\begin{cases}
+x \equiv 5 \pmod{12} \\
+x \equiv 5 \pmod{12} \\
+\end{cases}
+\]
+Sia $S \subset \mathbb{Z}$ l'insieme delle soluzioni del sistema.
+
+\textbf{Passo 1: Compatibilità.} \\ 
+Grazie al teorema cinese del resto, il sistema è compatibile, cioe $S \neq \emptyset$, se e solo se
+$$\gcd(12, 12) \mid 5 - 5 = 0 \qquad (1)$$
+
+Decomponendo in fattori primi:
+$$12 = 2^{2} \cdot 3, \quad 12 = 2^{2} \cdot 3$$
+
+Pertanto $\gcd(12, 12) = 12$.
+
+Pertanto la (1) è verificata: $12 \mid 0$. Il sistema è compatibile.\\
+Inoltre, osserviamo che $$5 - 5 = 0 \cdot 12 \qquad (2)$$
+\textbf{Passo 2: Calcolo di una soluzione particolare} \\
+Determiniamo una soluzione $x_0 \in S$.
+Iniziamo applicando l'algoritmo di Euclide con sostituzione a ritroso dei resti alla coppia (12, 12):
+\begin{center}
+\setlength{\arrayrulewidth}{0.5pt}
+\begin{tabular}{|p{5cm}|p{9cm}|}
+\hline
+\textbf{Algoritmo di Euclide} & \textbf{Sostituzione a ritroso} \\
+\hline
+$\cancel{12 = 1 \cdot  12 + 0}$ & \\
+\hline
+\end{tabular}
+\end{center}
+\textbf{Espansione completa:}
+\begin{align*}
+12 &= 0\cdot12 + 1\cdot12\\
+\end{align*}
+Otteniamo quindi: $$\gcd(12, 12) = 12 = 0 \cdot 12 + 1 \cdot 12$$
+
+Sostituendo nell'equazione (2) otteniamo:
+$$5 - 5 = 0 = 12 \cdot 0 = 0 \cdot (0 \cdot 12 + 1 \cdot 12) = 0 \cdot 12 - 0 \cdot 12$$
+
+Ricaviamo adesso una soluzione particolare partendo dalla precedente uguaglianza:
+$$5 - 5 = 0 \cdot 12 - 0 \cdot 12 \iff 5 - 0 \cdot 12 = 5 + 0 \cdot 12 \iff 5 = 5$$
+
+Quindi $x_0 = 5 \in S$ è una soluzione particolare del sistema.
+
+
+\textbf{Passo 3: Calcolo dell'insieme delle soluzioni} \\ 
+Grazie al Teorema Cinese del Resto sappiamo che:
+$$S = [5]_{\mathrm{mcm}(12, 12)}$$
+Ma
+$$\mathrm{mcm}({12}, {12}) = \frac{{12} \cdot {12}}{\gcd({12},{12})} = \frac{{2^{2} \cdot 3} \cdot {2^{2} \cdot 3}}{12} = {12}$$
+% menomale che nessuno mai vedra' questo codice
+
+Di conseguenza l'insieme delle soluzioni è:
+        $$S = [5]_{12} = \{5 + 12 \cdot k : k \in \mathbb{Z}\}$$
+        
+\end{document}

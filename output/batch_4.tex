@@ -1,0 +1,115 @@
+
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{cancel}
+\usepackage{array}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+
+% Imposta i margini della pagina
+\geometry{
+    top=2cm,
+    bottom=2.5cm,
+    left=2.5cm,
+    right=2.5cm,
+    includehead,
+    includefoot
+}
+
+% Configura l'header e il footer
+\pagestyle{fancy}
+\fancyhf{}  % Pulisce header e footer
+\renewcommand{\headrulewidth}{0pt}  % Rimuove la linea dell'header
+\fancyfoot[C]{-\thepage-}  % Numero di pagina centrato nel footer
+
+% Rimuove lo spazio extra dopo il titolo
+\makeatletter
+\def\@maketitle{
+  \newpage
+  \null
+  \vskip -2em
+  \begin{center}%
+  \let \footnote \thanks
+    {\LARGE \@title \par}%
+    \vskip 1.5em%
+    {\large \@date \par}%
+  \end{center}%
+  \par
+  \vskip 1.5em
+}
+\makeatother
+
+\begin{document}
+\title{Soluzione sistema di congruenze}
+\date{06/06/2025}
+\maketitle
+\section*{Esercizio}
+Si determinino tutte le soluzioni del seguente sistema di congruenze:
+\[
+\begin{cases}
+x \equiv 4 \pmod{8} \\
+x \equiv 12 \pmod{14} \\
+\end{cases}
+\]
+Sia $S \subset \mathbb{Z}$ l'insieme delle soluzioni del sistema.
+
+\textbf{Passo 1: Compatibilità.} \\ 
+Grazie al teorema cinese del resto, il sistema è compatibile, cioe $S \neq \emptyset$, se e solo se
+$$\gcd(8, 14) \mid 12 - 4 = 8 \qquad (1)$$
+
+Decomponendo in fattori primi:
+$$8 = 2^{3}, \quad 14 = 2 \cdot 7$$
+
+Pertanto $\gcd(8, 14) = 2$.
+
+Pertanto la (1) è verificata: $2 \mid 8$. Il sistema è compatibile.\\
+Inoltre, osserviamo che $$12 - 4 = 4 \cdot 2 \qquad (2)$$
+\textbf{Passo 2: Calcolo di una soluzione particolare} \\
+Determiniamo una soluzione $x_0 \in S$.
+Iniziamo applicando l'algoritmo di Euclide con sostituzione a ritroso dei resti alla coppia (8, 14):
+\begin{center}
+\setlength{\arrayrulewidth}{0.5pt}
+\begin{tabular}{|p{5cm}|p{9cm}|}
+\hline
+\textbf{Algoritmo di Euclide} & \textbf{Sostituzione a ritroso} \\
+\hline
+$8 = 0 \cdot  14 + 8$ & $8 = 8 - 0 \cdot  14$ \\
+\hline
+$14 = 1 \cdot  8 + 6$ & $6 = 14 - 1 \cdot  8$ \\
+\hline
+$8 = 1 \cdot  6 + 2$ & $2 = 8 - 1 \cdot  6$ \\
+\hline
+$\cancel{6 = 3 \cdot  2 + 0}$ & \\
+\hline
+\end{tabular}
+\end{center}
+\textbf{Espansione completa:}
+\begin{align*}
+2 &= 8 - 1\cdot6\\
+2 &= 8 - 1\cdot(14 - 1\cdot8)\\
+2 &= (8 - 0\cdot14) - 1\cdot(14 - 1\cdot(8 - 0\cdot14))\\
+2 &= 2\cdot8 + -1\cdot14\\
+\end{align*}
+Otteniamo quindi: $$\gcd(8, 14) = 2 = 2 \cdot 8 + -1 \cdot 14$$
+
+Sostituendo nell'equazione (2) otteniamo:
+$$12 - 4 = 8 = 2 \cdot 4 = 4 \cdot (2 \cdot 8 + -1 \cdot 14) = -4 \cdot 14 - 8 \cdot 8$$
+
+Ricaviamo adesso una soluzione particolare partendo dalla precedente uguaglianza:
+$$12 - 4 = -4 \cdot 14 - 8 \cdot 8 \iff 12 - -4 \cdot 14 = 4 + 8 \cdot 8 \iff 68 = 68$$
+
+Quindi $x_0 = 68 \in S$ è una soluzione particolare del sistema.
+
+
+\textbf{Passo 3: Calcolo dell'insieme delle soluzioni} \\ 
+Grazie al Teorema Cinese del Resto sappiamo che:
+$$S = [68]_{\mathrm{mcm}(8, 14)}$$
+Ma
+$$\mathrm{mcm}({8}, {14}) = \frac{{8} \cdot {14}}{\gcd({8},{14})} = \frac{{2^{3}} \cdot {2 \cdot 7}}{2} = {56}$$
+% menomale che nessuno mai vedra' questo codice
+
+Di conseguenza l'insieme delle soluzioni è:
+        $$S = [68]_{56} = [68 - 1 \cdot 56]_{56} = [12]_{56} = \{12 + 56 \cdot k : k \in \mathbb{Z}\}$$
+        
+\end{document}

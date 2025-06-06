@@ -1,0 +1,115 @@
+
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{cancel}
+\usepackage{array}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+
+% Imposta i margini della pagina
+\geometry{
+    top=2cm,
+    bottom=2.5cm,
+    left=2.5cm,
+    right=2.5cm,
+    includehead,
+    includefoot
+}
+
+% Configura l'header e il footer
+\pagestyle{fancy}
+\fancyhf{}  % Pulisce header e footer
+\renewcommand{\headrulewidth}{0pt}  % Rimuove la linea dell'header
+\fancyfoot[C]{-\thepage-}  % Numero di pagina centrato nel footer
+
+% Rimuove lo spazio extra dopo il titolo
+\makeatletter
+\def\@maketitle{
+  \newpage
+  \null
+  \vskip -2em
+  \begin{center}%
+  \let \footnote \thanks
+    {\LARGE \@title \par}%
+    \vskip 1.5em%
+    {\large \@date \par}%
+  \end{center}%
+  \par
+  \vskip 1.5em
+}
+\makeatother
+
+\begin{document}
+\title{Soluzione sistema di congruenze}
+\date{06/06/2025}
+\maketitle
+\section*{Esercizio}
+Si determinino tutte le soluzioni del seguente sistema di congruenze:
+\[
+\begin{cases}
+x \equiv 0 \pmod{7} \\
+x \equiv 0 \pmod{13} \\
+\end{cases}
+\]
+Sia $S \subset \mathbb{Z}$ l'insieme delle soluzioni del sistema.
+
+\textbf{Passo 1: Compatibilità.} \\ 
+Grazie al teorema cinese del resto, il sistema è compatibile, cioe $S \neq \emptyset$, se e solo se
+$$\gcd(7, 13) \mid 0 - 0 = 0 \qquad (1)$$
+
+Decomponendo in fattori primi:
+$$7 = 7, \quad 13 = 13$$
+
+Pertanto $\gcd(7, 13) = 1$.
+
+Pertanto la (1) è verificata: $1 \mid 0$. Il sistema è compatibile.\\
+Inoltre, osserviamo che $$0 - 0 = 0 \cdot 1 \qquad (2)$$
+\textbf{Passo 2: Calcolo di una soluzione particolare} \\
+Determiniamo una soluzione $x_0 \in S$.
+Iniziamo applicando l'algoritmo di Euclide con sostituzione a ritroso dei resti alla coppia (7, 13):
+\begin{center}
+\setlength{\arrayrulewidth}{0.5pt}
+\begin{tabular}{|p{5cm}|p{9cm}|}
+\hline
+\textbf{Algoritmo di Euclide} & \textbf{Sostituzione a ritroso} \\
+\hline
+$7 = 0 \cdot  13 + 7$ & $7 = 7 - 0 \cdot  13$ \\
+\hline
+$13 = 1 \cdot  7 + 6$ & $6 = 13 - 1 \cdot  7$ \\
+\hline
+$7 = 1 \cdot  6 + 1$ & $1 = 7 - 1 \cdot  6$ \\
+\hline
+$\cancel{6 = 6 \cdot  1 + 0}$ & \\
+\hline
+\end{tabular}
+\end{center}
+\textbf{Espansione completa:}
+\begin{align*}
+1 &= 7 - 1\cdot6\\
+1 &= 7 - 1\cdot(13 - 1\cdot7)\\
+1 &= (7 - 0\cdot13) - 1\cdot(13 - 1\cdot(7 - 0\cdot13))\\
+1 &= 2\cdot7 + -1\cdot13\\
+\end{align*}
+Otteniamo quindi: $$\gcd(7, 13) = 1 = 2 \cdot 7 + -1 \cdot 13$$
+
+Sostituendo nell'equazione (2) otteniamo:
+$$0 - 0 = 0 = 1 \cdot 0 = 0 \cdot (2 \cdot 7 + -1 \cdot 13) = 0 \cdot 13 - 0 \cdot 7$$
+
+Ricaviamo adesso una soluzione particolare partendo dalla precedente uguaglianza:
+$$0 - 0 = 0 \cdot 13 - 0 \cdot 7 \iff 0 - 0 \cdot 13 = 0 + 0 \cdot 7 \iff 0 = 0$$
+
+Quindi $x_0 = 0 \in S$ è una soluzione particolare del sistema.
+
+
+\textbf{Passo 3: Calcolo dell'insieme delle soluzioni} \\ 
+Grazie al Teorema Cinese del Resto sappiamo che:
+$$S = [0]_{\mathrm{mcm}(7, 13)}$$
+Ma
+$$\mathrm{mcm}({7}, {13}) = \frac{{7} \cdot {13}}{\gcd({7},{13})} = \frac{{7} \cdot {13}}{1} = {91}$$
+% menomale che nessuno mai vedra' questo codice
+
+Di conseguenza l'insieme delle soluzioni è:
+        $$S = [0]_{91} = \{0 + 91 \cdot k : k \in \mathbb{Z}\}$$
+        
+\end{document}

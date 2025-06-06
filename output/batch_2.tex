@@ -1,0 +1,67 @@
+
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{cancel}
+\usepackage{array}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+
+% Imposta i margini della pagina
+\geometry{
+    top=2cm,
+    bottom=2.5cm,
+    left=2.5cm,
+    right=2.5cm,
+    includehead,
+    includefoot
+}
+
+% Configura l'header e il footer
+\pagestyle{fancy}
+\fancyhf{}  % Pulisce header e footer
+\renewcommand{\headrulewidth}{0pt}  % Rimuove la linea dell'header
+\fancyfoot[C]{-\thepage-}  % Numero di pagina centrato nel footer
+
+% Rimuove lo spazio extra dopo il titolo
+\makeatletter
+\def\@maketitle{
+  \newpage
+  \null
+  \vskip -2em
+  \begin{center}%
+  \let \footnote \thanks
+    {\LARGE \@title \par}%
+    \vskip 1.5em%
+    {\large \@date \par}%
+  \end{center}%
+  \par
+  \vskip 1.5em
+}
+\makeatother
+
+\begin{document}
+\title{Soluzione sistema di congruenze}
+\date{06/06/2025}
+\maketitle
+\section*{Esercizio}
+Si determinino tutte le soluzioni del seguente sistema di congruenze:
+\[
+\begin{cases}
+x \equiv 1 \pmod{6} \\
+x \equiv 3 \pmod{9} \\
+\end{cases}
+\]
+Sia $S \subset \mathbb{Z}$ l'insieme delle soluzioni del sistema.
+
+\textbf{Passo 1: Compatibilità.} \\ 
+Grazie al teorema cinese del resto, il sistema è compatibile, cioe $S \neq \emptyset$, se e solo se
+$$\gcd(6, 9) \mid 3 - 1 = 2 \qquad (1)$$
+
+Decomponendo in fattori primi:
+$$6 = 2 \cdot 3, \quad 9 = 3^{2}$$
+
+Pertanto $\gcd(6, 9) = 3$.
+
+Pertanto la (1) NON è verificata: $3 \nmid 2$. Il sistema è incompatibile.\\
+\end{document}
