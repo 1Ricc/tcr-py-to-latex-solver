@@ -1,50 +1,22 @@
-from typing import Tuple, List, Optional
+from typing import Tuple, List
 import math
 
-def gcd(a: int, b: int, return_steps: bool = False) -> Tuple[int, Optional[List[str]]]:
-    """Calcola il MCD tra due numeri usando l'algoritmo di Euclide.
-    
-    Args:
-        a: primo numero
-        b: secondo numero
-        return_steps: se True, restituisce anche i passaggi dell'algoritmo
-        
-    Returns:
-        Tuple contenente il MCD e opzionalmente i passaggi
-    """
+def gcd(a: int, b: int, return_steps=False) -> Tuple[int, List[str]]:
     steps = []
     while b:
-        step = f"{a} = {a // b} · {b} + {a % b}"
-        if return_steps:
-            steps.append(step)
+        steps.append(f"{a} = {a // b} · {b} + {a % b}")
         a, b = b, a % b
-    return (a, steps) if return_steps else (a, None)
+    if return_steps:
+        return a, steps
+    return a
 
 def lcm(a: int, b: int) -> int:
-    """Calcola il MCM tra due numeri usando il MCD."""
-    return abs(a * b) // gcd(a, b)[0]
+    return abs(a * b) // math.gcd(a, b)
 
-class EuclidResult:
-    """Classe per contenere i risultati dell'algoritmo di Euclide esteso."""
-    def __init__(self, u: int, v: int, d: int, steps: List[Tuple[str, bool]], 
-                 back_subs: List[str], expansion: List[str]):
-        self.u = u  # coefficiente di Bézout per a
-        self.v = v  # coefficiente di Bézout per b
-        self.d = d  # MCD
-        self.steps = steps  # passaggi dell'algoritmo
-        self.back_subs = back_subs  # sostituzioni a ritroso
-        self.expansion = expansion  # espansione completa
+import re
+from typing import Tuple, List
 
-def extended_euclid(a: int, b: int) -> EuclidResult:
-    """Calcola l'algoritmo di Euclide esteso tra due numeri.
-    
-    Args:
-        a: primo numero
-        b: secondo numero
-        
-    Returns:
-        EuclidResult contenente tutti i risultati dell'algoritmo
-    """
+def extended_euclid(a: int, b: int) -> Tuple[int, int, int, List[Tuple[str, bool]], List[str], List[str]]:
     # Inizializzazione variabili
     old_r, r = a, b
     old_s, s = 1, 0
@@ -67,39 +39,40 @@ def extended_euclid(a: int, b: int) -> EuclidResult:
         last_step, _ = euclid_steps[-1]
         euclid_steps[-1] = (last_step, True)
 
-    # Generazione sostituzioni a ritroso
-    back_subs = [f"{R} = {A} - {q} · {B}" for A, B, q, R in reversed(equations)]
+    # Generazione sostituzioni a ritroso (per tabella)
+    back_subs = []
+    for A, B, q, R in reversed(equations):
+        back_subs.append(f"{R} = {A} - {q} · {B}")
 
-    # Espansione completa
+    # Espansione completa con sostituzioni progressive
     expansion_steps = []
+    
+    # Se non ci sono abbastanza equazioni, usa direttamente i coefficienti di Bézout
     if len(equations) < 2:
         expansion_steps.append(f"{old_r} &= {old_s}\cdot{a} + {old_t}\cdot{b}")
     else:
-        gcd_eq = equations[-2]
+        # Inizia dal gcd (penultima equazione)
+        gcd_eq = equations[-2]  # Prendi la penultima equazione che contiene il gcd
         current_expr = f"{gcd_eq[3]} &= {gcd_eq[0]} - {gcd_eq[2]}\cdot{gcd_eq[1]}"
         expansion_steps.append(current_expr)
 
+        # Sostituisci progressivamente ogni resto con la sua espressione
         for i in range(len(equations)-3, -1, -1):
             A, B, q, R = equations[i]
+            # Sostituisci il resto corrente nella sua espressione
             current_expr = current_expr.replace(str(R), f"({A} - {q}\cdot{B})")
             expansion_steps.append(current_expr)
 
+        # Aggiungi l'equazione finale con i coefficienti di Bézout
         expansion_steps.append(f"{old_r} &= {old_s}\cdot{a} + {old_t}\cdot{b}")
 
-    return EuclidResult(old_s, old_t, old_r, euclid_steps, back_subs, expansion_steps)
+    return old_s, old_t, old_r, euclid_steps, list(reversed(back_subs)), expansion_steps
+
 
 def factorize(n: int) -> str:
-    """Fattorizza un numero in primi e restituisce la rappresentazione LaTeX.
-    
-    Args:
-        n: numero da fattorizzare
-        
-    Returns:
-        Stringa LaTeX con la fattorizzazione
-    """
+    # Fattorizzazione in stringa LaTeX
     if n == 1:
         return "1"
-        
     i = 2
     factors = []
     while i * i <= n:
@@ -108,7 +81,10 @@ def factorize(n: int) -> str:
             n //= i
             count += 1
         if count:
-            factors.append(f"{i}^{{{count}}}" if count > 1 else f"{i}")
+            if count == 1:
+                factors.append(f"{i}")
+            else:
+                factors.append(f"{i}^{{{count}}}")
         i += 1
     if n > 1:
         factors.append(f"{n}")
