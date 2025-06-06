@@ -19,7 +19,7 @@ Questo programma genera soluzioni dettagliate per gli esercizi riguardanti siste
 
 1. Clona la repository:
 ```bash
-git clone https://github.com/tuusuario/tcr-py-to-latex-solver.git
+git clone https://github.com/1Ricc/tcr-py-to-latex-solver.git
 cd tcr-py-to-latex-solver
 ```
 

@@ -27,6 +27,9 @@ output/
 *.log
 *.out
 
+# Project specific
+ignorable/
+
 # IDE
 .idea/
 .vscode/
@@ -43,6 +46,3 @@ ENV/
 # OS
 .DS_Store
 Thumbs.db 
-
-# Ignorable 
-ignorable/
