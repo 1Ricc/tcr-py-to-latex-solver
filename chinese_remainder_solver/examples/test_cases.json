@@ -1,0 +1,37 @@
+[
+  {
+    "system": [[28, 108], [64, 78]],
+    "options": {"output_format": "pdf"},
+    "description": "Esempio standard compatibile (come nel template)"
+  },
+  {
+    "system": [[1, 6], [3, 9]],
+    "options": {"output_format": "pdf"},
+    "description": "Sistema incompatibile (MCD(6,9)=3 non divide 2)"
+  },
+  {
+    "system": [[2, 3], [3, 5]],
+    "options": {"output_format": "pdf"},
+    "description": "Moduli coprimi, soluzione semplice"
+  },
+  {
+    "system": [[4, 8], [12, 14]],
+    "options": {"output_format": "pdf"},
+    "description": "Moduli non coprimi ma compatibili"
+  },
+  {
+    "system": [[0, 7], [0, 13]],
+    "options": {"output_format": "pdf"},
+    "description": "Soluzione x ≡ 0 (mod mcm), entrambi i resti nulli"
+  },
+  {
+    "system": [[5, 12], [5, 12]],
+    "options": {"output_format": "pdf"},
+    "description": "Moduli uguali, stessi resti"
+  },
+  {
+    "system": [[3, 1], [7, 4]],
+    "options": {"output_format": "pdf"},
+    "description": "Modulo 1 (qualsiasi x ≡ 3 mod 1 è sempre vero)"
+  }
+] 

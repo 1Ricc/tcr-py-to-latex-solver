@@ -1,0 +1,15 @@
+\textbf{Passo 2: Calcolo di una soluzione particolare} 
+Applichiamo l'algoritmo di Euclide con sostituzione a ritroso alla coppia ({{m1}}, {{m2}}):
+
+{{#each gcd_steps}}
+{{this}} \\
+{{/each}}
+
+{{#if back_subs}}
+Sostituzione a ritroso:\\
+{{#each back_subs}}
+{{this}} \\
+{{/each}}
+{{/if}}
+
+Otteniamo quindi: $\gcd({{m1}}, {{m2}}) = {{gcd_value}} = {{u}} \cdot {{m1}} + {{v}} \cdot {{m2}}$\ 

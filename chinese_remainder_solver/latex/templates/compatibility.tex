@@ -1,0 +1,15 @@
+\textbf{Passo 1: Compatibilità.} 
+Sia $S \subset \mathbb{Z}$ l'insieme delle soluzioni del sistema.
+Grazie al teorema cinese del resto, il sistema è compatibile se e solo se
+$$\gcd({{m1}}, {{m2}}) \mid {{a2}} - {{a1}} = {{diff}}$$
+
+Decomponendo in fattori primi:
+$${{m1}} = {{m1_factorization}}, \quad {{m2}} = {{m2_factorization}}$$
+
+Pertanto $\gcd({{m1}}, {{m2}}) = {{gcd_value}}$.
+
+{{#if compatible}}
+La condizione è verificata: ${{gcd_value}} \mid {{diff}}$. Il sistema è compatibile.
+{{else}}
+La condizione NON è verificata: ${{gcd_value}} \nmid {{diff}}$. Il sistema è incompatibile.
+{{/if}} 

@@ -1,0 +1,84 @@
+SOLUZIONI PROPOSTE APPELLO DEL 10/06/2024
+FONDAMENTI MATEMATICI DELL'INFORMATICA
+
+ESERCIZIO 1
+Si determinino tutte le soluzioni del seguente sistema di congruenze:
+x ≡ 28 (mod 108)
+x ≡ 64 (mod 78)
+
+Si dimostri inoltre che tutte le soluzioni del sistema sono divisibili per 4.
+
+SVOLGIMENTO
+Sia S ⊂ Z l'insieme delle soluzioni del sistema.
+
+PASSO 1: COMPATIBILITA'
+Grazie al teorema cinese del resto, sappiamo che S ≠ ∅ se e soltanto se
+MCD(108, 78) | 64 - 28 = 36
+
+Decomponendo in fattori primi, si trova:
+108 = 2^2 · 3^3
+78 = 2 · 3 · 13
+
+da cui MCD(108, 78) = 6.
+
+Pertanto la condizione è verificata e S ≠ ∅.
+
+Osserviamo inoltre che:
+64 - 28 = 36 = 6 · 6 = 6 · MCD(108, 78)
+
+PASSO 2: CALCOLO DI UNA SOLUZIONE PARTICOLARE
+Determiniamo una soluzione x₀ ∈ S. Iniziamo applicando l'algoritmo di Euclide con sostituzione "a ritroso" dei resti alla coppia (108, 78):
+
+108 = 1 · 78 + 30    →    30 = 108 - 1 · 78
+78 = 2 · 30 + 18     →    18 = 78 - 2 · 30
+30 = 1 · 18 + 12     →    12 = 30 - 1 · 18
+18 = 1 · 12 + 6      →    6 = 18 - 1 · 12
+12 = 2 · 6 + 0
+
+Sostituzione a ritroso:
+6 = 18 - 1 · 12
+  = 18 - 1 · (30 - 1 · 18)
+  = 2 · 18 - 30
+  = 2 · (78 - 2 · 30) - 30
+  = 2 · 78 - 5 · 30
+  = 2 · 78 - 5 · (108 - 1 · 78)
+  = 7 · 78 - 5 · 108
+
+Otteniamo quindi:
+MCD(108, 78) = 6 = 7 · 78 - 5 · 108
+
+Sostituendo nell'equazione otteniamo:
+64 - 28 = 36 = 6 · 6 = 6 · (7 · 78 - 5 · 108) = 42 · 78 - 30 · 108
+
+Ricaviamo adesso una soluzione particolare x₀ a partire dalla precedente uguaglianza:
+64 - 28 = 42 · 78 - 30 · 108
+⇔ 64 - 42 · 78 = 28 - 30 · 108
+⇔ -3212 = -3212
+
+Pertanto x₀ = -3212 ∈ S è una soluzione particolare del sistema.
+
+PASSO 3: CALCOLO DELL'INSIEME DELLE SOLUZIONI
+Grazie al teorema cinese del resto sappiamo quindi che:
+S = [x₀]_{mcm(108,78)}
+
+Ma:
+mcm(108, 78) = (108 · 78) / MCD(108, 78) = (2^2 · 3^3 · 2 · 3 · 13) / 6 = 2^2 · 3^3 · 13 = 1404
+
+quindi abbiamo trovato che:
+S = [-3212]_{1404} = [-3212 + 3 · 1404]_{1404} = [1000]_{1404}
+S = {1000 + 1404 · k : k ∈ Z} ⊂ Z
+
+DOMANDA FINALE - DIVISIBILITA' PER 4
+Osserviamo che:
+1000 = 4 · 250  ⇒  [1000]_4 = [0]_4
+1404 = 4 · 351  ⇒  [1404]_4 = [0]_4
+
+Sia ora x ∈ S una soluzione del sistema. Per definizione, esiste k ∈ Z tale che x = 1000 + 1404 · k: la richiesta è adesso equivalente a dimostrare che [x]_4 = [0]_4.
+
+Vale:
+[x]_4 = [1000 + 1404 · k]_4
+      = [1000]_4 + [1404]_4 · [k]_4
+      = [0]_4 + [0]_4 · [k]_4
+      = [0]_4
+
+come volevamo mostrare. Pertanto ogni soluzione del sistema è divisibile per 4.
