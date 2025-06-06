@@ -56,7 +56,7 @@ Sia $S \subset \mathbb{Z}$ l'insieme delle soluzioni del sistema.
 
 \textbf{Passo 1: Compatibilità.} \\ 
 Grazie al teorema cinese del resto, il sistema è compatibile, cioe $S \neq \emptyset$, se e solo se
-$$\gcd(3, 5) \mid 3 - 2 = 1 \qquad (1)$$
+$$\gcd(3, 5) \mid 2 - 3 = -1 \qquad (1)$$
 
 Decomponendo in fattori primi:
 $$3 = 3, \quad 5 = 5$$
@@ -64,7 +64,7 @@ $$3 = 3, \quad 5 = 5$$
 Pertanto $\gcd(3, 5) = 1$.
 
 Pertanto la (1) è verificata: $1 \mid 1$. Il sistema è compatibile.\\
-Inoltre, osserviamo che $$3 - 2 = 1 \cdot 1 \qquad (2)$$
+Inoltre, osserviamo che $$2 - 3 = -1 \cdot 1 \qquad (2)$$
 \textbf{Passo 2: Calcolo di una soluzione particolare} \\
 Determiniamo una soluzione $x_0 \in S$.
 Iniziamo applicando l'algoritmo di Euclide con sostituzione a ritroso dei resti alla coppia (3, 5):
@@ -94,10 +94,10 @@ $\cancel{2 = 2 \cdot  1 + 0}$ & \\
 Otteniamo quindi: $$\gcd(3, 5) = 1 = 2 \cdot 3 + -1 \cdot 5$$
 
 Sostituendo nell'equazione (2) otteniamo:
-$$3 - 2 = 1 = 1 \cdot 1 = 1 \cdot (2 \cdot 3 + -1 \cdot 5) = -1 \cdot 5 - 2 \cdot 3$$
+$$2 - 3 = 1 = 1 \cdot 1 = 1 \cdot (2 \cdot 3 + -1 \cdot 5) = -1 \cdot 5 - 2 \cdot 3$$
 
 Ricaviamo adesso una soluzione particolare partendo dalla precedente uguaglianza:
-$$3 - 2 = -1 \cdot 5 - 2 \cdot 3 \iff 3 - -1 \cdot 5 = 2 + 2 \cdot 3 \iff 8 = 8$$
+$$2 - 3 = -1 \cdot 5 - 2 \cdot 3 \iff 3 - -1 \cdot 5 = 2 + 2 \cdot 3 \iff 8 = 8$$
 
 Quindi $x_0 = 8 \in S$ è una soluzione particolare del sistema.
 

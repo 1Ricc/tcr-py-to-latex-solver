@@ -56,7 +56,7 @@ Sia $S \subset \mathbb{Z}$ l'insieme delle soluzioni del sistema.
 
 \textbf{Passo 1: Compatibilità.} \\ 
 Grazie al teorema cinese del resto, il sistema è compatibile, cioe $S \neq \emptyset$, se e solo se
-$$\gcd(108, 78) \mid 64 - 28 = 36 \qquad (1)$$
+$$\gcd(108, 78) \mid 28 - 64 = -36 \qquad (1)$$
 
 Decomponendo in fattori primi:
 $$108 = 2^{2} \cdot 3^{3}, \quad 78 = 2 \cdot 3 \cdot 13$$
@@ -64,7 +64,7 @@ $$108 = 2^{2} \cdot 3^{3}, \quad 78 = 2 \cdot 3 \cdot 13$$
 Pertanto $\gcd(108, 78) = 6$.
 
 Pertanto la (1) è verificata: $6 \mid 36$. Il sistema è compatibile.\\
-Inoltre, osserviamo che $$64 - 28 = 6 \cdot 6 \qquad (2)$$
+Inoltre, osserviamo che $$28 - 64 = -6 \cdot 6 \qquad (2)$$
 \textbf{Passo 2: Calcolo di una soluzione particolare} \\
 Determiniamo una soluzione $x_0 \in S$.
 Iniziamo applicando l'algoritmo di Euclide con sostituzione a ritroso dei resti alla coppia (108, 78):
@@ -97,10 +97,10 @@ $\cancel{12 = 2 \cdot  6 + 0}$ & \\
 Otteniamo quindi: $$\gcd(108, 78) = 6 = -5 \cdot 108 + 7 \cdot 78$$
 
 Sostituendo nell'equazione (2) otteniamo:
-$$64 - 28 = 36 = 6 \cdot 6 = 6 \cdot (-5 \cdot 108 + 7 \cdot 78) = 42 \cdot 78 - 30 \cdot 108$$
+$$28 - 64 = 36 = 6 \cdot 6 = 6 \cdot (-5 \cdot 108 + 7 \cdot 78) = 42 \cdot 78 - 30 \cdot 108$$
 
 Ricaviamo adesso una soluzione particolare partendo dalla precedente uguaglianza:
-$$64 - 28 = 42 \cdot 78 - 30 \cdot 108 \iff 64 - 42 \cdot 78 = 28 + 30 \cdot 108 \iff -3212 = -3212$$
+$$28 - 64 = 42 \cdot 78 - 30 \cdot 108 \iff 64 - 42 \cdot 78 = 28 + 30 \cdot 108 \iff -3212 = -3212$$
 
 Quindi $x_0 = -3212 \in S$ è una soluzione particolare del sistema.
 

@@ -30,7 +30,7 @@ def generate_latex_documentation(solution: CRTSolution, options=None) -> str:
     content.append(rf"""
 \textbf{{Passo 1: Compatibilità.}} \\ 
 Grazie al teorema cinese del resto, il sistema è compatibile, cioe $S \neq \emptyset$, se e solo se
-$$\gcd({m1}, {m2}) \mid {a2} - {a1} = {solution.diff} \qquad (1)$$
+$$\gcd({m1}, {m2}) \mid {a1} - {a2} = {a1-a2} \qquad (1)$$
 
 Decomponendo in fattori primi:
 $${m1} = {solution.m1_factorization}, \quad {m2} = {solution.m2_factorization}$$
@@ -39,7 +39,7 @@ Pertanto $\gcd({m1}, {m2}) = {solution.gcd_value}$.
 """)
     if solution.compatible:
         content.append(rf"Pertanto la (1) è verificata: ${solution.gcd_value} \mid {solution.diff}$. Il sistema è compatibile.\\")
-        content.append(rf"Inoltre, osserviamo che $${a2} - {a1} = {(a2-a1)//solution.gcd_value} \cdot {solution.gcd_value} \qquad (2)$$")
+        content.append(rf"Inoltre, osserviamo che $${a1} - {a2} = {(a1-a2)//solution.gcd_value} \cdot {solution.gcd_value} \qquad (2)$$")
     else:
         content.append(rf"Pertanto la (1) NON è verificata: ${solution.gcd_value} \nmid {solution.diff}$. Il sistema è incompatibile.\\")
         return assemble_latex(title, date, '\n'.join(content))
@@ -85,10 +85,10 @@ Pertanto $\gcd({m1}, {m2}) = {solution.gcd_value}$.
     # Passo 3: Soluzione particolare
     content.append(rf"""
 Sostituendo nell'equazione (2) otteniamo:
-$${a2} - {a1} = {solution.diff} = {solution.gcd_value} \cdot {solution.diff // solution.gcd_value} = {solution.diff // solution.gcd_value} \cdot ({u} \cdot {m1} + {v} \cdot {m2}) = {solution.diff // solution.gcd_value * v} \cdot {m2} - {abs(solution.diff // solution.gcd_value * u)} \cdot {m1}$$
+$${a1} - {a2} = {solution.diff} = {solution.gcd_value} \cdot {solution.diff // solution.gcd_value} = {solution.diff // solution.gcd_value} \cdot ({u} \cdot {m1} + {v} \cdot {m2}) = {solution.diff // solution.gcd_value * v} \cdot {m2} - {abs(solution.diff // solution.gcd_value * u)} \cdot {m1}$$
 
 Ricaviamo adesso una soluzione particolare partendo dalla precedente uguaglianza:
-$${a2} - {a1} = {solution.diff // solution.gcd_value * v} \cdot {m2} - {abs(solution.diff // solution.gcd_value * u)} \cdot {m1} \iff {a2} - {solution.diff // solution.gcd_value * v} \cdot {m2} = {a1} + {abs(solution.diff // solution.gcd_value * u)} \cdot {m1} \iff {a2 - solution.diff // solution.gcd_value * v * m2} = {a1 + (solution.diff // solution.gcd_value * u) * m1}$$
+$${a1} - {a2} = {solution.diff // solution.gcd_value * v} \cdot {m2} - {abs(solution.diff // solution.gcd_value * u)} \cdot {m1} \iff {a2} - {solution.diff // solution.gcd_value * v} \cdot {m2} = {a1} + {abs(solution.diff // solution.gcd_value * u)} \cdot {m1} \iff {a2 - solution.diff // solution.gcd_value * v * m2} = {a1 + (solution.diff // solution.gcd_value * u) * m1}$$
 
 Quindi $x_0 = {solution.particular_solution} \in S$ è una soluzione particolare del sistema.
 """)

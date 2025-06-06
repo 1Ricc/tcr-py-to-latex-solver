@@ -48,65 +48,68 @@
 Si determinino tutte le soluzioni del seguente sistema di congruenze:
 \[
 \begin{cases}
-x \equiv 47 \pmod{102} \\
-x \equiv 33 \pmod{98} \\
+x \equiv 100 \pmod{150} \\
+x \equiv 65 \pmod{85} \\
 \end{cases}
 \]
 Sia $S \subset \mathbb{Z}$ l'insieme delle soluzioni del sistema.
 
 \textbf{Passo 1: Compatibilità.} \\ 
 Grazie al teorema cinese del resto, il sistema è compatibile, cioe $S \neq \emptyset$, se e solo se
-$$\gcd(102, 98) \mid 33 - 47 = -14 \qquad (1)$$
+$$\gcd(150, 85) \mid 65 - 100 = -35 \qquad (1)$$
 
 Decomponendo in fattori primi:
-$$102 = 2 \cdot 3 \cdot 17, \quad 98 = 2 \cdot 7^{2}$$
+$$150 = 2 \cdot 3 \cdot 5^{2}, \quad 85 = 5 \cdot 17$$
 
-Pertanto $\gcd(102, 98) = 2$.
+Pertanto $\gcd(150, 85) = 5$.
 
-Pertanto la (1) è verificata: $2 \mid -14$. Il sistema è compatibile.\\
-Inoltre, osserviamo che $$33 - 47 = -7 \cdot 2 \qquad (2)$$
+Pertanto la (1) è verificata: $5 \mid -35$. Il sistema è compatibile.\\
+Inoltre, osserviamo che $$65 - 100 = -7 \cdot 5 \qquad (2)$$
 \textbf{Passo 2: Calcolo di una soluzione particolare} \\
 Determiniamo una soluzione $x_0 \in S$.
-Iniziamo applicando l'algoritmo di Euclide con sostituzione a ritroso dei resti alla coppia (102, 98):
+Iniziamo applicando l'algoritmo di Euclide con sostituzione a ritroso dei resti alla coppia (150, 85):
 \begin{center}
 \setlength{\arrayrulewidth}{0.5pt}
 \begin{tabular}{|p{5cm}|p{9cm}|}
 \hline
 \textbf{Algoritmo di Euclide} & \textbf{Sostituzione a ritroso} \\
 \hline
-$102 = 1 \cdot  98 + 4$ & $4 = 102 - 1 \cdot  98$ \\
+$150 = 1 \cdot  85 + 65$ & $65 = 150 - 1 \cdot  85$ \\
 \hline
-$98 = 24 \cdot  4 + 2$ & $2 = 98 - 24 \cdot  4$ \\
+$85 = 1 \cdot  65 + 20$ & $20 = 85 - 1 \cdot  65$ \\
 \hline
-$\cancel{4 = 2 \cdot  2 + 0}$ & \\
+$65 = 3 \cdot  20 + 5$ & $5 = 65 - 3 \cdot  20$ \\
+\hline
+$\cancel{20 = 4 \cdot  5 + 0}$ & \\
 \hline
 \end{tabular}
 \end{center}
 \textbf{Espansione completa:}
 \begin{align*}
-2 &= 98 - 24\cdot4\\
-2 &= 98 - 2(102 - 1\cdot98)\cdot(102 - 1\cdot98)\\
-2 &= -24\cdot102 + 25\cdot98\\
+5 &= 65 - 3\cdot20\\
+5 &= 65 - 3\cdot(85 - 1\cdot65)\\
+5 &= (150 - 1\cdot85) - 3\cdot(85 - 1\cdot(150 - 1\cdot85))\\
+5 &= 4\cdot150 + -7\cdot85\\
 \end{align*}
-Otteniamo quindi: $$\gcd(102, 98) = 2 = -24 \cdot 102 + 25 \cdot 98$$
+Otteniamo quindi: $$\gcd(150, 85) = 5 = 4 \cdot 150 + -7 \cdot 85$$
 
 Sostituendo nell'equazione (2) otteniamo:
-$$33 - 47 = -14 = 2 \cdot -7 = -7 \cdot (-24 \cdot 102 + 25 \cdot 98) = -175 \cdot 98 - 168 \cdot 102$$
+$$65 - 100 = -35 = 5 \cdot -7 = -7 \cdot (4 \cdot 150 + -7 \cdot 85) = 49 \cdot 85 - 28 \cdot 150$$
 
 Ricaviamo adesso una soluzione particolare partendo dalla precedente uguaglianza:
-$$33 - 47 = -175 \cdot 98 - 168 \cdot 102 \iff 33 - -175 \cdot 98 = 47 + 168 \cdot 102 \iff 17183 = 17183$$
+$$65 - 100 = 49 \cdot 85 - 28 \cdot 150 \iff 65 - 49 \cdot 85 = 100 + 28 \cdot 150 \iff -4100 = -4100$$
 
-Quindi $x_0 = 17183 \in S$ è una soluzione particolare del sistema.
+Quindi $x_0 = -4100 \in S$ è una soluzione particolare del sistema.
 
 
 \textbf{Passo 3: Calcolo dell'insieme delle soluzioni} \\ 
 Grazie al Teorema Cinese del Resto sappiamo che:
-$$S = [17183]_{\mathrm{mcm}(102, 98)}$$
+$$S = [-4100]_{\mathrm{mcm}(150, 85)}$$
 Ma
-$$\mathrm{mcm}({102}, {98}) = \frac{{102} \cdot {98}}{\gcd({102},{98})} = \frac{{2 \cdot 3 \cdot 17} \cdot {2 \cdot 7^{2}}}{2} = {4998}$$
+$$\mathrm{mcm}({150}, {85}) = \frac{{150} \cdot {85}}{\gcd({150},{85})} = \frac{{2 \cdot 3 \cdot 5^{2}} \cdot {5 \cdot 17}}{5} = {2550}$$
 % menomale che nessuno mai vedra' questo codice
 
 Di conseguenza l'insieme delle soluzioni è:
-        $$S = [17183]_{4998} = [17183 - 3 \cdot 4998]_{4998} = [2189]_{4998} = \{2189 + 4998 \cdot k : k \in \mathbb{Z}\}$$
+        $$S = [-4100]_{2550} = [-4100 + 2 \cdot 2550]_{2550} = [1000]_{2550} = \{1000 + 2550 \cdot k : k \in \mathbb{Z}\}$$
         
 \end{document}
