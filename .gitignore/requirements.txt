@@ -1,2 +1,0 @@
-# Nessuna dipendenza Python esterna richiesta
-# Per generazione PDF serve pdflatex installato nel sistema 
